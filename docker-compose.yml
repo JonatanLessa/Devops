@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  nginx: 
+    image: nginx:1.21
+    container_name: nginx
+    ports:
+    - "80:80"
+    - "443:443"
+    build: 
+      context: .
+      dockerfile: ./nginx/nginx/Dockerfile
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html:ro      
+      - ./nginx/cert:/cert
+      #- ./nginx:/etc/nginx
