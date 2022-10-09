@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   nginx: 
-    image: nginx:1.21
+    image: nginx
     container_name: nginx
     ports:
     - "80:80"
@@ -10,6 +10,30 @@ services:
       context: .
       dockerfile: ./nginx/nginx/Dockerfile
     volumes:
-      - ./nginx/html:/usr/share/nginx/html:ro      
+      - ./nginx/html:/usr/share/nginx/html:ro    
       - ./nginx/cert:/cert
-      #- ./nginx:/etc/nginx
+      
+  server1: 
+    image: nginx:1.21
+    container_name: server1
+    ports:
+    - "81:80"
+    volumes:
+      - ./nginx/html1:/usr/share/nginx/html:ro    
+  
+  sever2: 
+    image: nginx:1.21
+    container_name: server2
+    ports:
+    - "82:80"
+    volumes:
+      - ./nginx/html2:/usr/share/nginx/html:ro   
+
+  serverbkp: 
+    image: nginx:1.21
+    container_name: server3
+    ports:
+    - "83:80"
+    volumes:
+      - ./nginx/html3:/usr/share/nginx/html:ro    
+    
